@@ -1,11 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
+import { useState } from "react";
+import Autenticacion from "./Components/Autenticacion/autenticacion";
+import MarvelList from "./Components/Marvel/MainPage/marvelList";
 
 export default function App() {
+  const [logged, setLogged] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {logged ? <MarvelList /> : <Autenticacion setLogged={setLogged} />}
     </View>
   );
 }
@@ -13,8 +16,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 5,
+    marginTop: 40,
   },
 });
