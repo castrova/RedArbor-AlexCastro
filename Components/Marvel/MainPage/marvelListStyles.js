@@ -33,4 +33,48 @@ export const listSytles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
+  userButton: {
+    width: "100%",
+    alignItems: "flex-end",
+    marginBottom: 10,
+  },
+  userImg: {
+    width: 35,
+    height: 35,
+    tintColor: "black",
+  },
+  userModal: {
+    position: "absolute",
+    alignItems: "center",
+    right: 5,
+    borderRadius: 5,
+    borderWidth: 1,
+    top: 40,
+    padding: 10,
+    width: "75%",
+    zIndex: 2,
+    backgroundColor: "white",
+  },
+  userName: {
+    fontSize: 20,
+    marginBottom: 50,
+  },
+  logOutButton: {
+    backgroundColor: "#f0131E",
+    padding: 20,
+    borderRadius: 5,
+    borderWidth: 1,
+  },
+  logOutText: {
+    color: "white",
+    fontSize: 18,
+  },
+  closeModal: {
+    alignSelf: "flex-start",
+    alignItems: "center",
+    width: 25,
+    height: 25,
+    borderWidth: 1,
+    borderRadius: 2,
+  },
 });

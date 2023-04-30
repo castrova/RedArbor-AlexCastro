@@ -1,24 +1,44 @@
 import { Text, View, TextInput, Pressable, Image } from "react-native";
 import { AuthStyles } from "./autenticacionStyles";
-import { mailImage } from "../../Images/mail.png";
 import { useState } from "react";
+import { users } from "../../Users/users";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Autenticacion(props) {
+export default function Autenticacion({ setLogged, setUser }) {
   const [mail, setMail] = useState("");
   const [passWord, setPassWord] = useState("");
   const [message, setMessage] = useState("");
 
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("logged", value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   loginPress = () => {
-    if (mail === "A" && passWord === "A") {
-      //Si el login es correcto
-      setMessage("Login correcto! Redirigiendo...");
-      setTimeout(() => {
-        props.setLogged(true);
-      }, 2000);
-    } else {
-      //Si el login es incorrecto
+    let formatMail = mail.toLowerCase().trim();
+    let userFound = false;
+
+    users.forEach((user) => {
+      if (user.mail === formatMail && user.password === passWord) {
+        //Si el login es correcto
+        storeData(user.id);
+        setUser(user);
+        setMessage(`Bienvenido de nuevo ${user.name}!`);
+        setTimeout(() => {
+          setLogged(true);
+        }, 2000);
+        userFound = true;
+      }
+    });
+
+    if (!userFound) {
+      // Si el login es incorrecto
       setMessage("El correo o la contraseña es incorrecta");
     }
+
     //Limpiamos el mensaje tras 4 segundos
     setTimeout(() => {
       setMessage("");
