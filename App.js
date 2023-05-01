@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
 import { useState, useEffect } from "react";
-import Autenticacion from "./Components/Autenticacion/autenticacion";
+import Autenticacion from "./Components/Authentication/authentication";
 import MarvelList from "./Components/Marvel/MainPage/marvelList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { users } from "./Users/users";
+import { users } from "./Components/Users/users";
 
 export default function App() {
   const [logged, setLogged] = useState(false); // Variable que define si hay un usuario logeado

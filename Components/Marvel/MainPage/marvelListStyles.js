@@ -74,4 +74,5 @@ export const listSytles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  closeImg: { width: 30, height: 30 },
 });

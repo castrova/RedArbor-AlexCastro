@@ -9,7 +9,7 @@ import { fetchCharacters } from "../utiles";
 import { useEffect, useReducer } from "react";
 import { listSytles } from "./marvelListStyles";
 import HeroeThumbnail from "./thumbnail";
-import Hero from "../Heroe/hero";
+import Hero from "../Hero/hero";
 import UserPage from "./userPage";
 
 const initialState = {
@@ -123,7 +123,7 @@ export default function MarvelList({ user, setLogged }) {
           <View style={listSytles.userButton}>
             <Pressable onPress={() => userPress()}>
               <Image
-                source={require("../../../Images/user.png")}
+                source={require("../../Images/user.png")}
                 style={listSytles.userImg}
               />
             </Pressable>

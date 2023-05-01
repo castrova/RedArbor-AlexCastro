@@ -1,7 +1,7 @@
-import { Text, View, TextInput, Pressable, Image } from "react-native";
-import { AuthStyles } from "./autenticacionStyles";
+import { Text, View, TextInput, Pressable } from "react-native";
+import { AuthStyles } from "./authenticationStyles";
 import { useState } from "react";
-import { users } from "../../Users/users";
+import { users } from "../Users/users";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Autenticacion({ setLogged, setUser }) {

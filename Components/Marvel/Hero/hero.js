@@ -35,17 +35,10 @@ export default function Hero({ hero, setShowHero }) {
   const renderComic = (comic, index) => {
     const foto = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
     return (
-      <View
-        style={{
-          width: "30%",
-          marginBottom: 15,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <View style={heroStyles.comicWrapper}>
         <Image
           source={{ uri: foto }}
-          style={{ width: 150, aspectRatio: 1 }}
+          style={heroStyles.comicImg}
           resizeMode="contain"
         />
         <Text key={index}>{comic.title}</Text>
@@ -61,16 +54,13 @@ export default function Hero({ hero, setShowHero }) {
     <View style={heroStyles.container}>
       <Pressable onPress={() => closeClick()}>
         <Image
-          source={require("../../../Images/close.png")}
-          style={{ width: 30, height: 30 }}
+          source={require("../../Images/close.png")}
+          style={heroStyles.closeImg}
         />
       </Pressable>
-      <View style={{ alignItems: "center", marginBottom: 20 }}>
+      <View style={heroStyles.heroWrapper}>
         <Text style={heroStyles.title}>{hero.name}</Text>
-        <Image
-          source={{ uri: foto }}
-          style={{ width: "70%", aspectRatio: 1 }}
-        />
+        <Image source={{ uri: foto }} style={heroStyles.heroImg} />
         <Text>{hero.description}</Text>
       </View>
 

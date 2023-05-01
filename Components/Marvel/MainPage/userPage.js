@@ -27,11 +27,11 @@ export default function UserPage({ user, setLogged, setModal }) {
     <View style={listSytles.userModal}>
       <Pressable style={listSytles.closeModal} onPress={() => closeModal()}>
         <Image
-          source={require("../../../Images/close.png")}
-          style={{ width: 30, height: 30 }}
+          source={require("../../Images/close.png")}
+          style={listSytles.closeImg}
         />
       </Pressable>
-      <View style={{ display: "flex" }}>
+      <View>
         <Text style={listSytles.userName}>
           {user.name + " " + user.lastName}
         </Text>
