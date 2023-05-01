@@ -17,3 +17,5 @@ Una vez que el login ha sido validado, el usuario permanecerá activo en el clie
 El componente principal de la aplicación es el MarvelList, el cual gestiona el estado mediante el uso de useReducer. Este componente cuenta con un scroll infinito que muestra thumbnails de héroes de Marvel y solicita más información a la API al llegar al final.
 
 Al hacer click en una de las thumbnails, se abrirá el panel de héroe, en donde se puede ver el nombre, la imagen, la descripción y una lista tipo scroll infinito de los cómics, mostrando la imagen de la portada y el título de cada uno de ellos.
+
+Las llamadas a la API se realizan en el archivo "Utiles". Donde declaro y exporto las funciones que retornan las respuestas del servidor.
