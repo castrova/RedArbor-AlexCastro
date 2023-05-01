@@ -5,10 +5,11 @@ import { users } from "../../Users/users";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Autenticacion({ setLogged, setUser }) {
-  const [mail, setMail] = useState("");
-  const [passWord, setPassWord] = useState("");
-  const [message, setMessage] = useState("");
+  const [mail, setMail] = useState(""); //Input de mail
+  const [passWord, setPassWord] = useState(""); //Input de password
+  const [message, setMessage] = useState(""); //Mensaje que se mostrará al introducir credenciales
 
+  //Función que guarda el usuario logeado en el almacenamiento local
   const storeData = async (value) => {
     try {
       await AsyncStorage.setItem("logged", value);
@@ -17,6 +18,7 @@ export default function Autenticacion({ setLogged, setUser }) {
     }
   };
 
+  //Función que comprueba los credenciales introducidos y los procesa
   loginPress = () => {
     let formatMail = mail.toLowerCase().trim();
     let userFound = false;

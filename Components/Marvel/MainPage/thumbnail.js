@@ -4,6 +4,7 @@ import { listSytles } from "./marvelListStyles";
 export default function HeroeThumbnail({ heroe, setHero, setShowHero }) {
   const foto = `${heroe.thumbnail.path}.${heroe.thumbnail.extension}`;
 
+  //Función lanzada al hacer click en la thumbnail del héroe
   const heroClick = () => {
     setHero(heroe);
     setShowHero(true);

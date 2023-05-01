@@ -1,14 +1,14 @@
 export const users = [
   {
-    mail: "a",
-    password: "A",
+    mail: "alexcastro@gmail.com",
+    password: "12345678",
     name: "Alex",
     lastName: "Castro",
     id: 1,
   },
   {
-    mail: "e",
-    password: "E",
+    mail: "testmail@marvel.com",
+    password: "Test_123",
     name: "Adrián",
     lastName: "García",
     id: 2,
@@ -16,7 +16,7 @@ export const users = [
   {
     mail: "bar@marvel.com",
     password: "B@rRed827",
-    name: "Antonio",
+    name: "Sergi",
     lastName: "López",
     id: 3,
   },

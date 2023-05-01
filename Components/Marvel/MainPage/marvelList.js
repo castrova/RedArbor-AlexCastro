@@ -1,65 +1,123 @@
 import {
   View,
-  Text,
   Image,
   ActivityIndicator,
   FlatList,
   Pressable,
 } from "react-native";
 import { fetchCharacters } from "../utiles";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { listSytles } from "./marvelListStyles";
 import HeroeThumbnail from "./thumbnail";
 import Hero from "../Heroe/hero";
 import UserPage from "./userPage";
 
-export default function MarvelList({ user, setLogged }) {
-  const [characters, setCharacters] = useState([]); //Todos los héroes
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(0); // Página actual
-  const [showHero, setShowHero] = useState(false);
-  const [hero, setHero] = useState({});
-  const [modal, setModal] = useState(false);
+const initialState = {
+  characters: [],
+  loading: false,
+  page: 0,
+  showHero: false,
+  hero: {},
+  modal: false,
+  clickIndex: 0,
+};
 
-  //Se encarga de lanzar la función para pedir héroes al empezar y al llegar al final del scroll
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_CHARACTERS":
+      return {
+        ...state,
+        characters: [...state.characters, ...action.payload],
+      };
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case "SET_PAGE":
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case "SET_SHOW_HERO":
+      return {
+        ...state,
+        showHero: action.payload,
+      };
+    case "SET_HERO":
+      return {
+        ...state,
+        hero: action.payload,
+      };
+    case "SET_MODAL":
+      return {
+        ...state,
+        modal: action.payload,
+      };
+    case "SET_CLICK_INDEX":
+      return {
+        ...state,
+        clickIndex: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+
+export default function MarvelList({ user, setLogged }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  //Función encargada de pedir los personajes a la API
   useEffect(() => {
     getCharacters();
-  }, [page]);
+  }, [state.page]);
 
-  //Se encarga de aumentar una página cuando se llega al fin del scroll
+  //Función que se lanza al llegar al fin del scroll de héroes
   const loadMoreData = () => {
-    setPage(page + 1);
+    dispatch({ type: "SET_PAGE", payload: state.page + 1 });
   };
 
-  //Se encarga de pedir los héroes y guardarlos en un estado
+  //Función que lanza la llamada al servidor
   async function getCharacters() {
-    setLoading(true);
+    dispatch({ type: "SET_LOADING", payload: true });
 
-    const res = await fetchCharacters(page);
-    setCharacters((prevAllMarvel) => [...prevAllMarvel, ...res]);
-    setLoading(false);
+    const res = await fetchCharacters(state.page);
+    dispatch({ type: "SET_CHARACTERS", payload: res });
+    dispatch({ type: "SET_LOADING", payload: false });
   }
 
-  //Se encarga de renderizar cada thumbnail de héroe
-  const renderHeroes = (hero) => {
+  //Función que renderiza cada héroe
+  const renderHeroes = (hero, idx) => {
     return (
       <HeroeThumbnail
+        idx={idx}
+        setClickIndex={(clickIndex) =>
+          dispatch({ type: "SET_CLICK_INDEX", payload: clickIndex })
+        }
         key={hero.id}
         heroe={hero}
-        setHero={setHero}
-        setShowHero={setShowHero}
+        setHero={(hero) => dispatch({ type: "SET_HERO", payload: hero })}
+        setShowHero={(showHero) =>
+          dispatch({ type: "SET_SHOW_HERO", payload: showHero })
+        }
       />
     );
   };
 
+  //Función que se llama al presionar el icono de usuario
   const userPress = () => {
-    setModal(!modal);
+    dispatch({ type: "SET_MODAL", payload: !state.modal });
   };
 
   return (
     <>
-      {showHero ? (
-        <Hero hero={hero} setShowHero={setShowHero} />
+      {state.showHero ? (
+        <Hero
+          hero={state.hero}
+          setShowHero={(showHero) =>
+            dispatch({ type: "SET_SHOW_HERO", payload: showHero })
+          }
+        />
       ) : (
         <>
           <View style={listSytles.userButton}>
@@ -70,18 +128,25 @@ export default function MarvelList({ user, setLogged }) {
               />
             </Pressable>
           </View>
-          {modal && (
-            <UserPage user={user} setLogged={setLogged} setModal={setModal} />
+          {state.modal && (
+            <UserPage
+              user={user}
+              setLogged={setLogged}
+              setModal={(modal) =>
+                dispatch({ type: "SET_MODAL", payload: modal })
+              }
+            />
           )}
           <FlatList
-            data={characters}
-            renderItem={({ item }) => renderHeroes(item)}
+            data={state.characters}
+            renderItem={({ item, index }) => renderHeroes(item, index)}
             keyExtractor={(item) => item.id}
             numColumns={2}
             columnWrapperStyle={{ justifyContent: "space-between" }}
             onEndReached={loadMoreData}
+            initialScrollIndex={state.clickIndex}
             ListFooterComponent={
-              loading && (
+              state.loading && (
                 <View style={listSytles.loadingWrapper}>
                   <ActivityIndicator size="large" color="#f0131E" />
                 </View>

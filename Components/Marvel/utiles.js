@@ -30,7 +30,6 @@ export async function fetchCharacters(page) {
 
 //Función que hace un fetch de la lista de cómics
 export async function fetchComics(page, id) {
-  console.log(id);
   const timestamp = new Date().getTime();
   const hash = md5(`${timestamp}${privateKey}${publicKey}`);
   const offSet = page * 20;

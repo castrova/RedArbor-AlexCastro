@@ -10,24 +10,22 @@ export const listSytles = StyleSheet.create({
     marginTop: 40,
   },
   loadingWrapper: {
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
   heroeWrapper: {
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 5,
     width: "49%",
     marginBottom: 10,
   },
   heroeThumbnail: {
     width: "100%",
     aspectRatio: 1,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
   },
   heroeName: {
     textAlign: "center",
@@ -72,9 +70,8 @@ export const listSytles = StyleSheet.create({
   closeModal: {
     alignSelf: "flex-start",
     alignItems: "center",
+    justifyContent: "center",
     width: 25,
     height: 25,
-    borderWidth: 1,
-    borderRadius: 2,
   },
 });

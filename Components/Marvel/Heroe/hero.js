@@ -60,7 +60,10 @@ export default function Hero({ hero, setShowHero }) {
   return (
     <View style={heroStyles.container}>
       <Pressable onPress={() => closeClick()}>
-        <Text>CLOSE</Text>
+        <Image
+          source={require("../../../Images/close.png")}
+          style={{ width: 30, height: 30 }}
+        />
       </Pressable>
       <View style={{ alignItems: "center", marginBottom: 20 }}>
         <Text style={heroStyles.title}>{hero.name}</Text>

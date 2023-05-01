@@ -1,8 +1,10 @@
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, Image } from "react-native";
 import { listSytles } from "./marvelListStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function UserPage({ user, setLogged, setModal }) {
-  const deleteData = async (value) => {
+  //Función encargada de borrar la información del almacenamiento local al cerrar sesión.
+  const deleteData = async () => {
     try {
       await AsyncStorage.removeItem("logged");
     } catch (e) {
@@ -10,11 +12,13 @@ export default function UserPage({ user, setLogged, setModal }) {
     }
   };
 
-  const logOutPress = () => {
-    deleteData();
+  //Función encargada de gestionar el logout
+  const logOutPress = async () => {
+    await deleteData();
     setLogged(false);
   };
 
+  //Cerrar el modal de usuario
   const closeModal = () => {
     setModal(false);
   };
@@ -22,7 +26,10 @@ export default function UserPage({ user, setLogged, setModal }) {
   return (
     <View style={listSytles.userModal}>
       <Pressable style={listSytles.closeModal} onPress={() => closeModal()}>
-        <Text>X</Text>
+        <Image
+          source={require("../../../Images/close.png")}
+          style={{ width: 30, height: 30 }}
+        />
       </Pressable>
       <View style={{ display: "flex" }}>
         <Text style={listSytles.userName}>
