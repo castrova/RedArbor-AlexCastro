@@ -19,3 +19,6 @@ El componente principal de la aplicación es el MarvelList, el cual gestiona el 
 Al hacer click en una de las thumbnails, se abrirá el panel de héroe, en donde se puede ver el nombre, la imagen, la descripción y una lista tipo scroll infinito de los cómics, mostrando la imagen de la portada y el título de cada uno de ellos.
 
 Las llamadas a la API se realizan en el archivo "Utiles". Donde declaro y exporto las funciones que retornan las respuestas del servidor.
+
+
+La APP ha sido testeada en sistema operativo Android en un dispositivo Samsung S10
