@@ -16,6 +16,6 @@ The main component of the application is MarvelList, which manages state using u
 
 By clicking on one of the thumbnails, the hero panel will open, where the name, image, description, and an infinite scroll list of comics are displayed, showing the cover image and title of each comic.
 
-API calls are made in the "Utiles" file, where functions that return server responses are declared and exported.
+API calls are made in the "Utiles" file, where functions that return server responses using "apisauce" are declared and exported.
 
 The app has been tested on the Android operating system on a Samsung S10 device.
