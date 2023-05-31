@@ -1,8 +1,7 @@
 import md5 from "md5";
 import { create } from "apisauce";
+import { PUBLIC_KEY, PRIVATE_KEY } from "../../config";
 
-const publicKey = "d67dbc9984f8735bacdf2a2028c76139";
-const privateKey = "6495bec3f3986b34ec8ca994a639753d8d126451";
 const marvelAPI = "https://gateway.marvel.com:443/v1/public";
 
 const api = create({
@@ -12,13 +11,13 @@ const api = create({
 //Función que hace un fetch de la lista de héroes
 export async function fetchCharacters(page) {
   const timestamp = new Date().getTime();
-  const hash = md5(`${timestamp}${privateKey}${publicKey}`);
+  const hash = md5(`${timestamp}${PRIVATE_KEY}${PUBLIC_KEY}`);
   const offSet = page * 20;
 
   try {
     const response = await api.get(`/characters`, {
       ts: timestamp,
-      apikey: publicKey,
+      apikey: PUBLIC_KEY,
       hash,
       offset: offSet,
     });
@@ -31,13 +30,13 @@ export async function fetchCharacters(page) {
 //Función que hace un fetch de la lista de cómics
 export async function fetchComics(page, id) {
   const timestamp = new Date().getTime();
-  const hash = md5(`${timestamp}${privateKey}${publicKey}`);
+  const hash = md5(`${timestamp}${PRIVATE_KEY}${PUBLIC_KEY}`);
   const offSet = page * 20;
 
   try {
     const response = await api.get(`/characters/${id}/comics`, {
       ts: timestamp,
-      apikey: publicKey,
+      apikey: PUBLIC_KEY,
       hash,
       offset: offSet,
     });

@@ -1,24 +1,21 @@
-# RedArbor-AlexCastro
-Prueba técnica de Alex Castro para Red Arbor.
+# MARVEL APP Alex Castro
 
-Para acceder a la aplicación, hay tres posibles credenciales de login que se proporcionan en la siguiente lista:
+To access the application, there are three possible login credentials provided in the following list:
 
-- Mail: alexcastro@gmail.com | Pw: 12345678
-- Mail: testmail@marvel.com | Pw: Test_123
-- Mail: bar@marvel.com | Pw: B@rRed827
+- Email: alex.castro.ver@gmail.com | Password: 12345678
+- Email: testmail@marvel.com | Password: Test_123
+- Email: bar@marvel.com | Password: B@rRed827
 
+Once the project is downloaded, to start it, you need to clone it into the desired directory and run the command npm i. Then, you should use the command expo start, and the application can be viewed through Expo Go.
 
-Una vez descargado el proyecto, para iniciarlo es necesario clonarlo en el directorio deseado y ejecutar el comando npm i. Luego, se debe usar el comando expo start y se podrá ver la aplicación a través de Expo Go.
+The application has a simulated login system that allows login with the mentioned credentials. Upon login, a brief login message with the user's name is displayed. The user's first name and last name can be seen on the user screen by pressing the icon that appears at the top right in the heroes list.
 
-La aplicación cuenta con un sistema de login simulado que permite el ingreso con las credenciales mencionadas anteriormente. Al ingresar, se muestra un mensaje breve de login con el nombre del usuario. Se puede ver el nombre y apellido del usuario al acceder a la pantalla de usuario presionando el icono que aparece arriba a la derecha en la lista de héroes.
+Once the login is validated, the user will remain active on the client until the logout button is used. This system is implemented using "AsyncStorage".
 
-Una vez que el login ha sido validado, el usuario permanecerá activo en el cliente hasta que se use el botón de cerrar sesión. Este sistema se realiza usando "AsyncStorage".
+The main component of the application is MarvelList, which manages state using useReducer. This component has an infinite scroll that displays thumbnails of Marvel heroes and requests more information from the API when reaching the end.
 
-El componente principal de la aplicación es el MarvelList, el cual gestiona el estado mediante el uso de useReducer. Este componente cuenta con un scroll infinito que muestra thumbnails de héroes de Marvel y solicita más información a la API al llegar al final.
+By clicking on one of the thumbnails, the hero panel will open, where the name, image, description, and an infinite scroll list of comics are displayed, showing the cover image and title of each comic.
 
-Al hacer click en una de las thumbnails, se abrirá el panel de héroe, en donde se puede ver el nombre, la imagen, la descripción y una lista tipo scroll infinito de los cómics, mostrando la imagen de la portada y el título de cada uno de ellos.
+API calls are made in the "Utiles" file, where functions that return server responses are declared and exported.
 
-Las llamadas a la API se realizan en el archivo "Utiles". Donde declaro y exporto las funciones que retornan las respuestas del servidor.
-
-
-La APP ha sido testeada en sistema operativo Android en un dispositivo Samsung S10
+The app has been tested on the Android operating system on a Samsung S10 device.
